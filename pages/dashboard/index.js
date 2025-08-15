@@ -1,4 +1,4 @@
-
+// pages/dashboard/index.js
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
@@ -24,10 +24,13 @@ const DashboardIndex = () => {
           router.push('/dashboard/admin');
           break;
         default:
-          // In case the role is not defined, redirect to a default page or home
+          // إذا لم يكن الدور معروفًا أو لم يتم تحديده، يتم التوجيه إلى الصفحة الرئيسية
           router.push('/');
           break;
       }
+    } else if (!loading && !currentUser) {
+      // إذا لم يكن هناك مستخدم مسجل دخوله، يتم التوجيه إلى صفحة تسجيل الدخول
+      router.push('/auth/login');
     }
   }, [loading, currentUser, userRole, router]);
 
